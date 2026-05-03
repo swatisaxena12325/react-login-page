@@ -1,16 +1,16 @@
 # React Login Page
 
-A full-stack authentication system with a sleek, animated dark UI.
+A full-stack login and registration demo with email OTP verification, JWT authentication, and a polished dark glassmorphism UI.
 
 ## Features
 
 - **Register** — Full Name, Contact, Email, Gender, DOB
-- **OTP Verification** — 6-digit OTP sent via email; 10-min expiry + resend
-- **Auto-generated Password** — sent to user's email after verification
-- **Login** — JWT-based authentication
-- **Change Password** — First-login prompt to set personal password, with strength meter
-- **Dashboard** — Protected view showing user info
-- **Animated UI** — Dark glassmorphism design, no Tailwind
+- **OTP Verification** — 6-digit OTP sent via email with 10-minute expiry and resend support
+- **Auto-generated Password** — emailed after account verification
+- **Login** — JWT-based authentication for protected routes
+- **Change Password** — first-login prompt to set a personal password
+- **Dashboard** — secure view of authenticated user details
+- **Animated UI** — dark glassmorphism styling with smooth transitions
 
 ---
 
@@ -42,8 +42,8 @@ node server.js
 
 Backend runs on <http://localhost:5000>
 
-> **Email**: Uses [Ethereal](https://ethereal.email) — a fake SMTP service.  
-> After starting the server, OTP and credentials emails are shown as preview URLs in the **browser console** (F12).
+> **Email**: Uses SMTP(primary service) and [Ethereal](https://ethereal.email) — a fake SMTP service(as a fallback).
+> After starting the server, OTP and credentials emails are sent on the registered email address.
 
 ### 2. Frontend
 
@@ -73,15 +73,15 @@ Register → OTP Verify → [Credentials sent to email] → Login → Change Pas
 
 ## API Endpoints
 
-| Method | Endpoint              | Auth     | Description                      |
-|--------|-----------------------|----------|----------------------------------|
-| POST   | `/api/register`       | —        | Register + send OTP              |
-| POST   | `/api/verify-otp`     | —        | Verify OTP + create account      |
-| POST   | `/api/resend-otp`     | —        | Resend OTP                       |
-| POST   | `/api/login`          | —        | Login → returns JWT              |
-| POST   | `/api/change-password`| Bearer   | Change password                  |
-| POST   | `/api/keep-password`  | Bearer   | Skip password change             |
-| GET    | `/api/me`             | Bearer   | Get current user info            |
+| Method | Endpoint               | Auth   | Description                 |
+| ------ | ---------------------- | ------ | --------------------------- |
+| POST   | `/api/register`        | —      | Register + send OTP         |
+| POST   | `/api/verify-otp`      | —      | Verify OTP + create account |
+| POST   | `/api/resend-otp`      | —      | Resend OTP                  |
+| POST   | `/api/login`           | —      | Login → returns JWT         |
+| POST   | `/api/change-password` | Bearer | Change password             |
+| POST   | `/api/keep-password`   | Bearer | Skip password change        |
+| GET    | `/api/me`              | Bearer | Get current user info       |
 
 ---
 
